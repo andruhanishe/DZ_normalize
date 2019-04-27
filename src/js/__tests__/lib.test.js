@@ -8,5 +8,5 @@ test('it should normalize', () => {
 
     const result = normalize(data,2);
 
-    expect(result).toBe(expected);
+    expect(result).toEqual(expected);
 });
