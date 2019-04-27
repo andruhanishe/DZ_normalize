@@ -1,28 +1,30 @@
-// -------------------zodiac----------------------
+// -------------------normalize------------------------
 
-export function Date(day, month) {
-    this.day = day;
-    this.month = month;
-}
-
-export function Zodiac(nameOfZodiac, numberOfMonth) {
-    this.nameOfZodiac = nameOfZodiac;
-    this.numberOfMonth = numberOfMonth;
-}
-
-export function singOfZodiac(zodiacs, birthday) {
-    let result;
-    for (const zodiac of zodiacs) {
-        if (zodiac.numberOfMonth === birthday.month){
-            if (birthday.day > 22) {
-                const next = zodiacs [zodiac.numberOfMonth];
-                result = next.nameOfZodiac;
-            }
-            else {
-                result = zodiac.nameOfZodiac;
+export function normalize(data, limitUpDown) {
+    let i;
+    for (i=0; i<limitUpDown; i++){
+        let max = data[0];
+        let positionMax;
+        let removedMax;
+        for (const datum of data) {
+            if (max < datum){
+                max = datum;
             }
         }
-    }
-    return result;
-}
+        positionMax = data.indexOf(max);
+        removedMax = data.splice(positionMax,1);
 
+        let min = data[0];
+        let positionMin;
+        let removedMin;
+        for (const datum of data) {
+            if (min > datum){
+                min = datum;
+            }
+        }
+        positionMin = data.indexOf(min);
+        removedMin = data.splice(positionMin,1);
+    }
+
+    return data;
+}
